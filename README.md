@@ -62,3 +62,8 @@ column
 
 
 ## Wireframe
+
+ ![Part 1](https://i.imgur.com/zudsI6T.jpg)
+
+ ![Part 2](https://i.imgur.com/80MfaOX.jpg)
+
