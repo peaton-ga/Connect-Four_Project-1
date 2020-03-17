@@ -36,11 +36,11 @@ function selectColumn() {
 	for(let i = 0; i < td.length; i++) {
 		// If that element is in the chosen column darken background
 		if(td[i].classList.contains(currentCol)) {
-			td[i].style.backgroundColor = 'darkblue';
+			td[i].style.backgroundColor = 'darkred';
 		} 
 		// Else if the cell isn't in the column make sure to switch it back to blue
 		else {
-			td[i].style.backgroundColor = 'blue';
+			td[i].style.backgroundColor = 'lightsteelblue';
 		}
 	}
 }
