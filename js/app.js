@@ -6,21 +6,21 @@ const chip = document.querySelector('.chip');
 const inner = document.querySelector('.inner');
 const introMsg = document.querySelector('.intro');
 
-// // add  Event Listeners to every cell
-// for(let i = 0; i < td.length; i++) {
+// add  Event Listeners to every cell
+for(let i = 0; i < td.length; i++) {
 
-// 	// Listener responsible for moving chip over column then darken column
-// 	td[i].addEventListener('mouseover', selectColumn);
+	// Listener responsible for moving chip over column then darken column
+	td[i].addEventListener('mouseover', selectColumn);
 
-// 	// Listener responsible for dropping chip
-// 	td[i].addEventListener('click', dropChip);
+	// Listener responsible for dropping chip
+	td[i].addEventListener('click', dropChip);
 
 // 	// Listener responsible for checking for win
 // 	td[i].addEventListener('animationend', checkBoard);
 
 // 	// Listener responsible for mouseover pullOut
 // 	td[i].addEventListener('mouseover', pullOutIntro);
-// }
+}
 
 // Declare selectColumn function
 function selectColumn() {
