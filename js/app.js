@@ -141,28 +141,28 @@ function dropChip() {
 		case 1:
 			placedChip.style.animationName = 'five-chip';
 	}
-
+}
 
 
 
 // Declare changeChip function
-	function changeChip() {
-		// If chip isn't yellow then chip is now yellow
-		if(!chip.classList.contains('yellow')&&!inner.classList.contains('inner-yellow')) {
-			chip.classList.add('yellow');
-			inner.classList.add('inner-yellow');
-			placedChip.classList.remove('yellow');
-			innerCircle.classList.remove('inner-yellow');
-		} 
-		// Else it's red
-		else {
-			chip.classList.remove('yellow');
-			inner.classList.remove('inner-yellow');
-			placedChip.classList.add('yellow');
-			innerCircle.classList.add('inner-yellow');
-		}
+function changeChip() {
+	// If chip isn't yellow then chip is now yellow
+	if(!chip.classList.contains('yellow')&&!inner.classList.contains('inner-yellow')) {
+		chip.classList.add('yellow');
+		inner.classList.add('inner-yellow');
+		placedChip.classList.remove('yellow');
+		innerCircle.classList.remove('inner-yellow');
+	} 
+	// Else it's red
+	else {
+		chip.classList.remove('yellow');
+		inner.classList.remove('inner-yellow');
+		placedChip.classList.add('yellow');
+		innerCircle.classList.add('inner-yellow');
 	}
 }
+
 
 // Declare animate function (still need to add more)
 // function animateChip(chip) {
