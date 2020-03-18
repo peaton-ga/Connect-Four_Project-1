@@ -5,17 +5,22 @@ const td = document.querySelectorAll('td');
 const chip = document.querySelector('.chip');
 const inner = document.querySelector('.inner');
 const introMsg = document.querySelector('.intro');
-// add  Event Listeners to every cell
-for(let i = 0; i < td.length; i++) {
-	// Listener responsible for moving chip over column then darken column
-	td[i].addEventListener('mouseover', selectColumn);
-	// Listener responsible for dropping chip
-	td[i].addEventListener('click', dropChip);
-	// Listener responsible for checking for win
-	td[i].addEventListener('animationend', checkBoard);
-	// Listener responsible for mouseover pullOut
-	td[i].addEventListener('mouseover', pullOutIntro);
-}
+
+// // add  Event Listeners to every cell
+// for(let i = 0; i < td.length; i++) {
+
+// 	// Listener responsible for moving chip over column then darken column
+// 	td[i].addEventListener('mouseover', selectColumn);
+
+// 	// Listener responsible for dropping chip
+// 	td[i].addEventListener('click', dropChip);
+
+// 	// Listener responsible for checking for win
+// 	td[i].addEventListener('animationend', checkBoard);
+
+// 	// Listener responsible for mouseover pullOut
+// 	td[i].addEventListener('mouseover', pullOutIntro);
+// }
 
 // Declare selectColumn function
 function selectColumn() {
@@ -36,20 +41,69 @@ function selectColumn() {
 	}
 }
 // Declare function to display chip over columns //
+function displayChipAtTop(cell) {
+	//switch position given column
+	switch(cell.className) {
+		case 'column-1':
+			chip.style.left = '328px';
+			break;
+		case 'column-2':
+			chip.style.left = '425px';
+			break;
+		case 'column-3':
+			chip.style.left = '524px';
+			break;
+		case 'column-4':
+			chip.style.left = '627px';
+			break;
+		case 'column-5':
+			chip.style.left = '728px';
+			break;				
+		case 'column-6':
+			chip.style.left = '826px';
+			break;
+		case 'column-7':
+			chip.style.left = '928px';
+			break;		
+	}
+}
+// Declare function to drpo chip over columns
+function dropChip() {
+	//grab functions global variables
+	//create new chip to drop
+	let placedChip = document.createElement('div');
+	//create inner circle for shadow effect
+	let innerCircle = document.createElement('div');
+	//create var to hold the amount of spots open in the column
+	let spotsOpen = 0;
+	//put chip together
+	placedChip.classList.add('placed-chip');
+	innerCircle.classList.add('inner');
+	placedChip.appendChild(innerCircle);
 
+	//call place chip funcion and pass it the current td
+	placeChip(this);
+	//call function to change chip
+	changeChip();
+}
 
-
-// Declare function that will drop the chip over the columns //
-	// Use global variables for functions
-		// Create a new chip to drop
-			// Create inner circle for effect showing shadow on chip (figure out way to animate)
-				// Create a variable that can hold the amount of open spots within column
-				 	// Put the chip together (use append Child?)
-
-
-// Declare function that will change the chip
-	// If chip isn't yellow then chip is now yellow
-		// Else it should be diff color, (red?)
+//declare changeChip function
+function changeChip() {
+	//if chip isn't yellow then chip is now yellow
+	if(!chip.classList.contains('yellow')&&!inner.classList.contains('inner-yellow')) {
+		chip.classList.add('yellow');
+		inner.classList.add('inner-yellow');
+		placedChip.classList.remove('yellow');
+		innerCircle.classList.remove('inner-yellow');
+	} 
+	//else it's red
+	else {
+		chip.classList.remove('yellow');
+		inner.classList.remove('inner-yellow');
+		placedChip.classList.add('yellow');
+		innerCircle.classList.add('inner-yellow');
+	}
+}
 
 
 
@@ -59,11 +113,17 @@ function selectColumn() {
 	// Grab selected column
 		// Array for holding each td with selected column
 
+
+
 // Call the place chip function? pass to current td //
 // Call function to change chip --> Two players
 
+
+
 // Declare a function to check the board //
 	// thought about making array variable to store every possible win combo? (not yet, functionality first and foremost!)
+
+
 
 
 // Use loop through all td's created
@@ -86,6 +146,7 @@ function selectColumn() {
 	// How to drop off the loser's chip? (timer?)
 	// Change background color once game ends to 
 	// indicate end of game
+
 
 // function to end game? //
 // function pullOutIntro() {

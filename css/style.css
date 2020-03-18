@@ -1,13 +1,56 @@
 body {
-	background-color: lavender;
+	background-color: lightsteelblue;
 }
 
+h1 {
+	color: red;
+	font-style: bold;
+	font-size: 40px;
 
+}
+
+/*.board {
+	display: flex;
+	justify-content: center;
+}
+*/
 td {
 	text-align: center;
+	justify-content: center;
 	transition: all 0.5s ease;
 	width: 100px;
 	height: 100px;
-	background-color: lightsteelblue;
+	background-color: lightgrey;
+	border-color: black;
 
+}
+
+.chip {
+	margin: 0;
+	padding: 0;
+	position: relative;
+	top: 86px;
+	left: 30px;
+	/*border-color: black;*/
+	background-color: red;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+/*	overflow: hidden;
+	transition: all 0.7s ease;
+	animation-iteration-count: 1; (NEED TO FIGURE OUT ANIMATION LATER!!!)
+	animation-fill-mode: forwards; */
+}
+
+.dark {
+	background-color: darkblue;
+}
+
+.yellow {
+	background-color: yellow;
+}
+
+.inner-yellow {
+	background-color: yellow;
+	box-shadow: inset 0px 0px 60px #b3b300;
 }
