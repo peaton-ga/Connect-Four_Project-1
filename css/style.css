@@ -9,11 +9,6 @@ h1 {
 
 }
 
-/*.board {
-	display: flex;
-	justify-content: center;
-}
-*/
 td {
 	text-align: center;
 	justify-content: center;
@@ -21,6 +16,7 @@ td {
 	width: 100px;
 	height: 100px;
 	background-color: blue;
+
 }
 
 .chip {

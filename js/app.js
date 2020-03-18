@@ -6,7 +6,7 @@ const chip = document.querySelector('.chip');
 const inner = document.querySelector('.inner');
 const introMsg = document.querySelector('.intro');
 
-// add  Event Listeners to every cell
+// Add  Event Listeners to every cell
 for(let i = 0; i < td.length; i++) {
 
 	// Listener responsible for moving chip over column then darken column
@@ -15,14 +15,14 @@ for(let i = 0; i < td.length; i++) {
 	// Listener responsible for dropping chip
 	td[i].addEventListener('click', dropChip);
 
-// 	// Listener responsible for checking for win
-// 	td[i].addEventListener('animationend', checkBoard);
+ 	// Listener responsible for checking for win
 
-// 	// Listener responsible for mouseover pullOut
-// 	td[i].addEventListener('mouseover', pullOutIntro);
+
+ 	// Listener responsible for mouseover pullOut
+
 }
 
-// Declare selectColumn function
+// Declare selectColumn function //
 function selectColumn() {
 	// Call function to position chip over column
 	displayChipAtTop(this);
@@ -32,17 +32,18 @@ function selectColumn() {
 	for(let i = 0; i < td.length; i++) {
 		// If that element is in the chosen column darken background
 		if(td[i].classList.contains(currentCol)) {
-			td[i].style.backgroundColor = 'darkred';
+			td[i].style.backgroundColor = 'darkblue';
 		} 
 		// Else if the cell isn't in the column make sure to switch it back to blue
 		else {
-			td[i].style.backgroundColor = 'lightsteelblue';
+			td[i].style.backgroundColor = 'blue';
 		}
 	}
 }
+
 // Declare function to display chip over columns //
 function displayChipAtTop(cell) {
-	//switch position given column
+	// Switch position given column
 	switch(cell.className) {
 		case 'column-1':
 			chip.style.left = '328px';
@@ -67,52 +68,116 @@ function displayChipAtTop(cell) {
 			break;		
 	}
 }
-// Declare function to drpo chip over columns
+
+// Declare function to drop chip over columns
 function dropChip() {
-	//grab functions global variables
-	//create new chip to drop
+	// Grab functions global variables
+	// Create new chip to drop
 	let placedChip = document.createElement('div');
-	//create inner circle for shadow effect
+	// Create inner circle for shadow effect
 	let innerCircle = document.createElement('div');
-	//create var to hold the amount of spots open in the column
+	// Create variable to hold the amount of spots open in the column
 	let spotsOpen = 0;
-	//put chip together
+	// Put chip together
 	placedChip.classList.add('placed-chip');
 	innerCircle.classList.add('inner');
 	placedChip.appendChild(innerCircle);
-
-	//call place chip funcion and pass it the current td
+	// Call place chip funcion and pass it the current td
 	placeChip(this);
-	//call function to change chip
-	changeChip();
-}
+	// Call function to change chip
+	changeChip();					
 
-//declare changeChip function
-function changeChip() {
-	//if chip isn't yellow then chip is now yellow
-	if(!chip.classList.contains('yellow')&&!inner.classList.contains('inner-yellow')) {
-		chip.classList.add('yellow');
-		inner.classList.add('inner-yellow');
-		placedChip.classList.remove('yellow');
-		innerCircle.classList.remove('inner-yellow');
-	} 
-	//else it's red
-	else {
-		chip.classList.remove('yellow');
-		inner.classList.remove('inner-yellow');
-		placedChip.classList.add('yellow');
-		innerCircle.classList.add('inner-yellow');
+	// Declare placeChip function
+	function placeChip(cell) {
+		// Grab current column
+		let currentColumn = cell.className;
+		// Create array to hold each td with the currentColumn
+		let filterArray = [];
+		// Loop through all td's
+		for(let i = 0; i < td.length; i++) {
+			// If td has column add td to filterArray
+			if(td[i].classList.contains(currentColumn)) {
+				filterArray.push(td[i]);
+			}
+		}
+	
+	// Loop through filterArray
+	for(let i = 0; i < filterArray.length; i++) {
+		// Create boolean variable to see if td in filterArray already has chip!
+		let hasChip = filterArray[i].hasChildNodes();
+		// If cell doesn't have div.chip then placeChip
+		if(!hasChip) {
+			// Place chip
+			// If the td below td[i] is empty, chip will be placed in that td
+			filterArray[i].appendChild(placedChip); 
+			// Increase spotsOpen
+			spotsOpen++;
+		} 
+	}
+	
+	// Adjust placedChip animation to account for chips already in column (put in reverse order b/c other order was not working)
+	switch(spotsOpen) {
+		// 6 spots open
+		case 6:
+			placedChip.style.animationName = 'animate'; // (Still working on animation, addressing JS bug) //
+			break;
+		// 5 spots open	
+		case 5:
+			placedChip.style.animationName = 'one-chip';
+			break;
+		// 4 spots open	
+		case 4:
+			placedChip.style.animationName = 'two-chip';
+			break;
+		// 3 spots open
+		case 3:
+			placedChip.style.animationName = 'three-chip';
+			break;
+		// 2 spots open
+		case 2:
+			placedChip.style.animationName = 'four-chip';
+			break;
+		// 1 spot open
+		case 1:
+			placedChip.style.animationName = 'five-chip';
+	}
+
+
+
+
+// Declare changeChip function
+	function changeChip() {
+		// If chip isn't yellow then chip is now yellow
+		if(!chip.classList.contains('yellow')&&!inner.classList.contains('inner-yellow')) {
+			chip.classList.add('yellow');
+			inner.classList.add('inner-yellow');
+			placedChip.classList.remove('yellow');
+			innerCircle.classList.remove('inner-yellow');
+		} 
+		// Else it's red
+		else {
+			chip.classList.remove('yellow');
+			inner.classList.remove('inner-yellow');
+			placedChip.classList.add('yellow');
+			innerCircle.classList.add('inner-yellow');
+		}
 	}
 }
 
+// Declare animate function (still need to add more)
+// function animateChip(chip) {
+// 	// Grab chip from chip position
+// 	let disk = chip.firstChild;
+// 	// Grab inner circle from that chip
+// 	let innerDisk = disk.firstChild;
+// 	// Take away its box shadow
+// 	innerDisk.style.boxShadow = 'none';
 
+	// animation duration?
 
+	// animation count?
 
-
-// Declare place chip function? //
-	// Grab selected column
-		// Array for holding each td with selected column
-
+	// active/apply animation
 
 
 // Call the place chip function? pass to current td //
