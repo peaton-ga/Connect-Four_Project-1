@@ -1,4 +1,4 @@
-// console.log("Connect-Four")
+// Console.log("Connect-Four")
 
 // Declare global variables
 const td = document.querySelectorAll('td');
