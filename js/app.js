@@ -162,7 +162,7 @@ function changeChip() {
 		placedChip.classList.add('yellow');
 		innerCircle.classList.add('inner-yellow');
 	}
-	}
+}
 }
 
 // Declare animate function (still need to add more)
