@@ -16,10 +16,10 @@ for(let i = 0; i < td.length; i++) {
 	td[i].addEventListener('click', dropChip);
 
  	// Listener responsible for checking for win
-
+ 	td[i].addEventListener('animationend', checkBoard);
 
  	// Listener responsible for mouseover pullOut
-
+ 	td[i].addEventListener('mouseover', pullOutIntro);
 }
 
 // Declare selectColumn function //
@@ -101,19 +101,19 @@ function dropChip() {
 				filterArray.push(td[i]);
 			}
 		}
-	
 	// Loop through filterArray
-	for(let i = 0; i < filterArray.length; i++) {
-		// Create boolean variable to see if td in filterArray already has chip!
-		let hasChip = filterArray[i].hasChildNodes();
-		// If cell doesn't have div.chip then placeChip
-		if(!hasChip) {
-			// Place chip
-			// If the td below td[i] is empty, chip will be placed in that td
-			filterArray[i].appendChild(placedChip); 
-			// Increase spotsOpen
-			spotsOpen++;
-		} 
+		for(let i = 0; i < filterArray.length; i++) {
+			// Create boolean variable to see if td in filterArray already has chip!
+			let hasChip = filterArray[i].hasChildNodes();
+			// If cell doesn't have div.chip then placeChip
+			if(!hasChip) {
+				// Place chip
+				// If the td below td[i] is empty, chip will be placed in that td
+				filterArray[i].appendChild(placedChip); 
+				// Increase spotsOpen
+				spotsOpen++;
+			}
+		}	
 	}
 	
 	// Adjust placedChip animation to account for chips already in column (put in reverse order b/c other order was not working)
@@ -142,80 +142,117 @@ function dropChip() {
 		case 1:
 			placedChip.style.animationName = 'five-chip';
 	}
-}
 
 
 
-// Declare changeChip function
-function changeChip() {
-	// If chip isn't yellow then chip is now yellow
-	if(!chip.classList.contains('yellow')&&!inner.classList.contains('inner-yellow')) {
-		chip.classList.add('yellow');
-		inner.classList.add('inner-yellow');
-		placedChip.classList.remove('yellow');
-		innerCircle.classList.remove('inner-yellow');
-	} 
-	// Else it's red
-	else {
-		chip.classList.remove('yellow');
-		inner.classList.remove('inner-yellow');
-		placedChip.classList.add('yellow');
-		innerCircle.classList.add('inner-yellow');
+
+	// Declare changeChip function
+	function changeChip() {
+		// If chip isn't yellow then chip is now yellow
+		if(!chip.classList.contains('yellow')&&!inner.classList.contains('inner-yellow')) {
+			chip.classList.add('yellow');
+			inner.classList.add('inner-yellow');
+			placedChip.classList.remove('yellow');
+			innerCircle.classList.remove('inner-yellow');
+		} 
+		// Else it's red
+		else {
+			chip.classList.remove('yellow');
+			inner.classList.remove('inner-yellow');
+			placedChip.classList.add('yellow');
+			innerCircle.classList.add('inner-yellow');
+		}
 	}
 }
-}
 
-// Declare animate function (still need to add more)
-// function animateChip(chip) {
-// 	// Grab chip from chip position
-// 	let disk = chip.firstChild;
-// 	// Grab inner circle from that chip
-// 	let innerDisk = disk.firstChild;
-// 	// Take away its box shadow
-// 	innerDisk.style.boxShadow = 'none';
-
-	// animation duration?
-
-	// animation count?
-
-	// active/apply animation
-
-
-// Call the place chip function? pass to current td //
-// Call function to change chip --> Two players
 
 
 
 // Declare a function to check the board //
-	// thought about making array variable to store every possible win combo? (not yet, functionality first and foremost!)
+function checkBoard() {
+	//make array variable to to store every possible win combo
 
 
+	// childNodes: read-only property returns a live NodeList of child nodes of 
+	// the given element where the first child node is assigned index 0
+	// Takes the four combination values & plug them into the game board values 
+	for(let i = 0; i < winCombos.length; i++) {
+		const i1 = td[winCombos[i][0]];
+		const i2 = td[winCombos[i][1]];
+		const i3 = td[winCombos[i][2]];
+		const i4 = td[winCombos[i][3]];
+		// Check to see if all 4 spots have a div.chip
+		if(i1.hasChildNodes() === true &&
+		   i2.hasChildNodes() === true && 
+		   i3.hasChildNodes() === true && 
+		   i4.hasChildNodes() === true) {
+		   	// If they do now check those chips to see if they all have the class of yellow
+			if(i1.firstChild.classList.contains('yellow') &&
+			   i2.firstChild.classList.contains('yellow') &&
+			   i3.firstChild.classList.contains('yellow') &&
+			   i4.firstChild.classList.contains('yellow')) {
+			   	// If they do yellow is passed as the winner as well as the chip positions
+				gameOver('Yellow', i1, i2, i3, i4);
+			} 
+			// Check to see if none of them have  the yellow class
+			else if (!i1.firstChild.classList.contains('yellow') &&
+			   !i2.firstChild.classList.contains('yellow') &&
+			   !i3.firstChild.classList.contains('yellow') &&
+			   !i4.firstChild.classList.contains('yellow')) {
+			   	//if they don't red is passed as the winner as well as the chip positions
+				gameOver('Red', i1, i2, i3, i4);
+			}
+		}
+	}	
+	// Declare gameOver function
+	function gameOver(winner, chip1, chip2, chip3, chip4) {
+		// Animate the winning chips
+		animateChip(chip1);
+		animateChip(chip2);
+		animateChip(chip3);
+		animateChip(chip4);
+		display(winner);
+		// Declare animate function
+		function animateChip(chip) {
+			// Grab chip from chip position
+			let disk = chip.firstChild;
+			// Grab inner circle from that chip
+			let innerDisk = disk.firstChild;
+			// Take away its box shadow
+			innerDisk.style.boxShadow = 'none';
+
+			// Apply animation duration
+			disk.style.animationDuration = '0.2s';
+			innerDisk.style.animationDuration = '0.2s';
+
+			// Apply animation count
+			disk.style.animationIterationCount = 'infinite';
+			innerDisk.style.animationIterationCount = 'infinite';
+
+			// Apply animation
+			disk.style.animationName = 'winner';
+			innerDisk.style.animationName = 'innerWinner';
+		}
+		// Declare display function
+		function display(winner) {
+			// Grab elements that are needed
+			const body = document.querySelector('body');
+			const board = document.querySelector('.board');
+			const dropChip = document.querySelector('.chip');
+			const gameOver = document.querySelector('.game-over');
+			// Set timeout to pull game board off screen
+			setTimeout(function() {board.style.top = '-900px';}, 2000);
+			// Set timeout to drop the losing chip
+			setTimeout(function() {dropChip.style.animationName = 'dropChip';}, 3200);
+			// Set background color to the winner
+			body.style.backgroundColor = winner;
+		}
+	}
+}
 
 
-// Use loop through all td's created
-	// If td has a column, add td to array (create a filter array?)
-	// The filter() method creates an array filled with all array elements 
-	// that pass a test (provided as a function).
-
-
-
-
-
-
-// Declare a game over function 
-	// Goal: Animte the winning chips! (declare function for animation)
-
-
-
-// Declare function that will display Winner!
-	// How to pull board off of screen? (timer?)
-	// How to drop off the loser's chip? (timer?)
-	// Change background color once game ends to 
-	// indicate end of game
-
-
-// function to end game? //
-// function pullOutIntro() {
-// 	introMsg.style.left = '65px';
-// 	introMsg.style.animationName = 'fadeAway' (animationName not defined)
-// }
+// Function to pull away title, not working yet //
+function pullOutIntro() {
+	introMsg.style.left = '65px';
+	introMsg.style.animationName = 'fadeAway' 
+}
