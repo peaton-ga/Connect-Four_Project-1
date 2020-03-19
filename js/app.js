@@ -39,33 +39,34 @@ function selectColumn() {
 			td[i].style.backgroundColor = 'blue';
 		}
 	}
-}
 
-// Declare function to display chip over columns //
-function displayChipAtTop(cell) {
+
+	// Declare function to display chip over columns //
+	function displayChipAtTop(cell) {
 	// Switch position given column
-	switch(cell.className) {
-		case 'column-1':
-			chip.style.left = '328px';
-			break;
-		case 'column-2':
-			chip.style.left = '425px';
-			break;
-		case 'column-3':
-			chip.style.left = '524px';
-			break;
-		case 'column-4':
-			chip.style.left = '627px';
-			break;
-		case 'column-5':
-			chip.style.left = '728px';
-			break;				
-		case 'column-6':
-			chip.style.left = '826px';
-			break;
-		case 'column-7':
-			chip.style.left = '928px';
-			break;		
+		switch(cell.className) {
+			case 'column-1':
+				chip.style.left = '328px';
+				break;
+			case 'column-2':
+				chip.style.left = '425px';
+				break;
+			case 'column-3':
+				chip.style.left = '524px';
+				break;
+			case 'column-4':
+				chip.style.left = '627px';
+				break;
+			case 'column-5':
+				chip.style.left = '728px';
+				break;				
+			case 'column-6':
+				chip.style.left = '826px';
+				break;
+			case 'column-7':
+				chip.style.left = '928px';
+				break;		
+		}
 	}
 }
 
@@ -161,8 +162,8 @@ function changeChip() {
 		placedChip.classList.add('yellow');
 		innerCircle.classList.add('inner-yellow');
 	}
+	}
 }
-
 
 // Declare animate function (still need to add more)
 // function animateChip(chip) {
