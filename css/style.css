@@ -2,30 +2,19 @@ body {
 	background-color: lightsteelblue;
 }
 
-/* @keyframes */
+/* CSS Set for now, need to research and add @keyframes 
+(using MDN/stack overflow examples to figure it out) 
 
+@keyframe controls the intermediate steps in a CSS animation sequence by 
+defining styles for keyframes (or waypoints) along the animation sequence
+
+*/
 
 .intro {
 	position: absolute;
 	left: -265px;
 	top: 90px;
 	color: black;
-}
-/*h1 {
-	color: red;
-	font-style: bold;
-	font-size: 40px;
-
-}*/
-
-td {
-	text-align: center;
-	justify-content: center;
-	transition: all 0.5s ease;
-	width: 100px;
-	height: 100px;
-	background-color: blue;
-
 }
 
 .chip {
@@ -80,6 +69,15 @@ table {
 	border-collapse: collapse;
 }
 
+td {
+	text-align: center;
+	justify-content: center;
+	transition: all 0.5s ease;
+	width: 100px;
+	height: 100px;
+	background-color: blue;
+
+}
 .dark {
 	background-color: darkblue;
 }

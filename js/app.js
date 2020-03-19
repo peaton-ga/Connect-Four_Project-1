@@ -101,7 +101,7 @@ function dropChip() {
 				filterArray.push(td[i]);
 			}
 		}
-	// Loop through filterArray
+		// Loop through filterArray
 		for(let i = 0; i < filterArray.length; i++) {
 			// Create boolean variable to see if td in filterArray already has chip!
 			let hasChip = filterArray[i].hasChildNodes();
@@ -114,38 +114,34 @@ function dropChip() {
 				spotsOpen++;
 			}
 		}	
+		// Adjust placedChip animation to account for chips already in column (put in reverse order b/c other order was not working)
+		switch(spotsOpen) {
+			// 6 spots open
+			case 6:
+				placedChip.style.animationName = 'animate'; 
+				break;
+			// 5 spots open	
+			case 5:
+				placedChip.style.animationName = 'one-chip';
+				break;
+			// 4 spots open	
+			case 4:
+				placedChip.style.animationName = 'two-chip';
+				break;
+			// 3 spots open
+			case 3:
+				placedChip.style.animationName = 'three-chip';
+				break;
+			// 2 spots open
+			case 2:
+				placedChip.style.animationName = 'four-chip';
+				break;
+			// 1 spot open
+			case 1:
+				placedChip.style.animationName = 'five-chip';
+				break;
+		}
 	}
-	
-	// Adjust placedChip animation to account for chips already in column (put in reverse order b/c other order was not working)
-	switch(spotsOpen) {
-		// 6 spots open
-		case 6:
-			placedChip.style.animationName = 'animate'; // (Still working on animation, addressing JS bug) //
-			break;
-		// 5 spots open	
-		case 5:
-			placedChip.style.animationName = 'one-chip';
-			break;
-		// 4 spots open	
-		case 4:
-			placedChip.style.animationName = 'two-chip';
-			break;
-		// 3 spots open
-		case 3:
-			placedChip.style.animationName = 'three-chip';
-			break;
-		// 2 spots open
-		case 2:
-			placedChip.style.animationName = 'four-chip';
-			break;
-		// 1 spot open
-		case 1:
-			placedChip.style.animationName = 'five-chip';
-	}
-
-
-
-
 	// Declare changeChip function
 	function changeChip() {
 		// If chip isn't yellow then chip is now yellow
@@ -165,12 +161,9 @@ function dropChip() {
 	}
 }
 
-
-
-
 // Declare a function to check the board //
 function checkBoard() {
-	//make array variable to to store every possible win combo
+	// Make array variable to to store every possible win combo
 	const winCombos = [
 	[0, 1, 2, 3], [41, 40, 39, 38], [7, 8, 9, 10], [34, 33, 32, 31], [14, 15, 16, 17], [27, 26, 25, 24], [21, 22, 23, 24],
 	[20, 19, 18, 17], [28, 29, 30, 31], [13, 12, 11, 10], [35, 36, 37, 38], [6, 5, 4, 3], [0, 7, 14, 21], [41, 34, 27, 20],
@@ -209,7 +202,7 @@ function checkBoard() {
 			   !i2.firstChild.classList.contains('yellow') &&
 			   !i3.firstChild.classList.contains('yellow') &&
 			   !i4.firstChild.classList.contains('yellow')) {
-			   	//if they don't red is passed as the winner as well as the chip positions
+			   	// If they don't red is passed as the winner as well as the chip positions
 				gameOver('Red', i1, i2, i3, i4);
 			}
 		}
@@ -264,5 +257,5 @@ function checkBoard() {
 // Function to pull away title, not working yet //
 function pullOutIntro() {
 	introMsg.style.left = '65px';
-	introMsg.style.animationName = 'fadeAway' 
+	introMsg.style.animationName = 'fadeOut' 
 }
