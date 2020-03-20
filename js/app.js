@@ -194,7 +194,7 @@ function checkBoard() {
 			   i2.firstChild.classList.contains('yellow') &&
 			   i3.firstChild.classList.contains('yellow') &&
 			   i4.firstChild.classList.contains('yellow')) {
-			   	// If they do yellow is passed as the winner as well as the chip positions
+			   	// If they do yellow is passed as the winner if the chip positions are correct
 				gameOver('Yellow', i1, i2, i3, i4);
 			} 
 			// Check to see if none of them have  the yellow class
@@ -202,7 +202,7 @@ function checkBoard() {
 			   !i2.firstChild.classList.contains('yellow') &&
 			   !i3.firstChild.classList.contains('yellow') &&
 			   !i4.firstChild.classList.contains('yellow')) {
-			   	// If they don't red is passed as the winner as well as the chip positions
+			   	// If they don't red is passed as the winner if the chip positions are correct
 				gameOver('Red', i1, i2, i3, i4);
 			}
 		}
@@ -236,6 +236,7 @@ function checkBoard() {
 			disk.style.animationName = 'winner';
 			innerDisk.style.animationName = 'innerWinner';
 		}
+		
 		// Declare display function
 		function display(winner) {
 			// Grab elements that are needed
@@ -252,7 +253,6 @@ function checkBoard() {
 		}
 	}
 }
-
 
 // Function to pull away title, not working yet //
 function pullOutIntro() {
