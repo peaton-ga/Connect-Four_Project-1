@@ -1,12 +1,10 @@
-// Console.log("Connect-Four")
-
-// Declare global variables
+// Declare global variables //
 const td = document.querySelectorAll('td');
 const chip = document.querySelector('.chip');
 const inner = document.querySelector('.inner');
 const introMsg = document.querySelector('.intro');
 
-// Add  Event Listeners to every cell
+// Add  Event Listeners to every cell //
 for(let i = 0; i < td.length; i++) {
 
 	// Listener responsible for moving chip over column then darken column
@@ -39,8 +37,6 @@ function selectColumn() {
 			td[i].style.backgroundColor = 'blue';
 		}
 	}
-
-
 	// Declare function to display chip over columns //
 	function displayChipAtTop(cell) {
 	// Switch position given column
@@ -70,7 +66,7 @@ function selectColumn() {
 	}
 }
 
-// Declare function to drop chip over columns
+// Declare function to drop chip over columns //
 function dropChip() {
 	// Grab functions global variables
 	// Create new chip to drop
@@ -88,7 +84,7 @@ function dropChip() {
 	// Call function to change chip
 	changeChip();					
 
-	// Declare placeChip function
+	// Declare placeChip function //
 	function placeChip(cell) {
 		// Grab current column
 		let currentColumn = cell.className;
@@ -142,7 +138,7 @@ function dropChip() {
 				break;
 		}
 	}
-	// Declare changeChip function
+	// Declare changeChip function //
 	function changeChip() {
 		// If chip isn't yellow then chip is now yellow
 		if(!chip.classList.contains('yellow')&&!inner.classList.contains('inner-yellow')) {
@@ -207,7 +203,7 @@ function checkBoard() {
 			}
 		}
 	}	
-	// Declare gameOver function
+	// Declare gameOver function //
 	function gameOver(winner, chip1, chip2, chip3, chip4) {
 		// Animate the winning chips
 		animateChip(chip1);
@@ -215,7 +211,7 @@ function checkBoard() {
 		animateChip(chip3);
 		animateChip(chip4);
 		display(winner);
-		// Declare animate function
+		// Declare animate function //
 		function animateChip(chip) {
 			// Grab chip from chip position
 			let disk = chip.firstChild;
@@ -237,7 +233,7 @@ function checkBoard() {
 			innerDisk.style.animationName = 'innerWinner';
 		}
 		
-		// Declare display function
+		// Declare display function //
 		function display(winner) {
 			// Grab elements that are needed
 			const body = document.querySelector('body');
@@ -254,7 +250,7 @@ function checkBoard() {
 	}
 }
 
-// Function to pull away title, not working yet //
+// Function to pull away title //
 function pullOutIntro() {
 	introMsg.style.left = '65px';
 	introMsg.style.animationName = 'fadeOut' 

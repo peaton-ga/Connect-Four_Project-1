@@ -2,13 +2,8 @@ body {
 	background-color: lightsteelblue;
 }
 
-/* CSS Set for now, need to research and add @keyframes 
-(using MDN/stack overflow examples to figure it out) 
-
-@keyframe controls the intermediate steps in a CSS animation sequence by 
-defining styles for keyframes (or waypoints) along the animation sequence
-
-*/
+/* @keyframe controls the intermediate steps in a CSS animation sequence by 
+defining styles for keyframes (or waypoints) along the animation sequence */
 
 @keyframes fadeOut {
 	0% {opacity: 1.0;}
