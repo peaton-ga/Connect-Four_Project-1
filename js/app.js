@@ -140,6 +140,9 @@ function dropChip() {
 	}
 	// Declare changeChip function //
 	function changeChip() {
+		// The Element.classList is a read-only property that returns a 
+		// live DOMTokenList collection of the class attributes of the element. 
+		// This can then be used to manipulate the class list.
 		// If chip isn't yellow then chip is now yellow
 		if(!chip.classList.contains('yellow')&&!inner.classList.contains('inner-yellow')) {
 			chip.classList.add('yellow');
@@ -159,7 +162,7 @@ function dropChip() {
 
 // Declare a function to check the board //
 function checkBoard() {
-	// Make array variable to to store every possible win combo
+	// Make array variable to to store every possible win combo; may need to add more
 	const winCombos = [
 	[0, 1, 2, 3], [41, 40, 39, 38], [7, 8, 9, 10], [34, 33, 32, 31], [14, 15, 16, 17], [27, 26, 25, 24], [21, 22, 23, 24],
 	[20, 19, 18, 17], [28, 29, 30, 31], [13, 12, 11, 10], [35, 36, 37, 38], [6, 5, 4, 3], [0, 7, 14, 21], [41, 34, 27, 20],
@@ -190,7 +193,7 @@ function checkBoard() {
 			   i2.firstChild.classList.contains('yellow') &&
 			   i3.firstChild.classList.contains('yellow') &&
 			   i4.firstChild.classList.contains('yellow')) {
-			   	// If they do yellow is passed as the winner if the chip positions are correct
+			   	// If they do, yellow is passed as the winner if the chip positions are correct
 				gameOver('Yellow', i1, i2, i3, i4);
 			} 
 			// Check to see if none of them have  the yellow class
@@ -198,7 +201,7 @@ function checkBoard() {
 			   !i2.firstChild.classList.contains('yellow') &&
 			   !i3.firstChild.classList.contains('yellow') &&
 			   !i4.firstChild.classList.contains('yellow')) {
-			   	// If they don't red is passed as the winner if the chip positions are correct
+			   	// If they don't, red is passed as the winner if the chip positions are correct
 				gameOver('Red', i1, i2, i3, i4);
 			}
 		}
@@ -241,6 +244,8 @@ function checkBoard() {
 			const dropChip = document.querySelector('.chip');
 			const gameOver = document.querySelector('.game-over');
 			// Set timeout to pull game board off screen
+			// The setTimeout() method calls a function or 
+			// evaluates an expression after a specified number of milliseconds
 			setTimeout(function() {board.style.top = '-900px';}, 2000);
 			// Set timeout to drop the losing chip
 			setTimeout(function() {dropChip.style.animationName = 'dropChip';}, 3200);
