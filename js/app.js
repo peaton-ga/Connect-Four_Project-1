@@ -4,7 +4,10 @@ const chip = document.querySelector('.chip');
 const inner = document.querySelector('.inner');
 const introMsg = document.querySelector('.intro');
 
-// Add  Event Listeners to every cell //
+// addEventListener() works by adding a function or an object that implements 
+// EventListener to the list of event listeners 
+// for the specified event type on the EventTarget on which it's called. 
+// Add  Event Listeners to every cell
 for(let i = 0; i < td.length; i++) {
 
 	// Listener responsible for moving chip over column then darken column
